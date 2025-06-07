@@ -131,16 +131,7 @@ We used the difference in group means as the test statistic:
 
 We ran a permutation test with 1,000 simulations by shuffling the rating labels to generate a null distribution of differences.
 
-### Null Distribution Plot
-
-<iframe
-  src="/healthy-recipes-review/assets/sugar-permutation.html"
-  width="800"
-  height="500"
-  frameborder="0"
-></iframe>
-
-### Interpretation
+### Interpretation of the Null Plot
 
 The null distribution centers near 0, while our observed difference of –5.88 (red line) lies far in the left tail. The **p-value = 0.0000**, indicating the observed result is highly unlikely under the null.
 
@@ -182,3 +173,17 @@ We also created cals_binned, a categorical version of the calorie column, dividi
 Our final model used Ridge Regression with both numeric and text features. We included prep time, steps, fat, is_high_sugar, and TF-IDF encodings of name, description, and ingredients. We used a pipeline to combine all preprocessing and tuned the regularization strength (alpha) with GridSearchCV, selecting alpha=100.
 
 The Ridge model achieved RMSE = 0.6343, improving on both the baseline model (0.6387) and DummyRegressor (0.6392). While the improvement was modest, it shows the impact of thoughtful feature engineering.
+
+----
+
+### Fairness Analysis
+We evaluated whether our final model was fair by comparing its performance on two groups: high-sugar recipes (is_high_sugar = 1) and low-sugar ones (is_high_sugar = 0). This feature flagged recipes in the top 25% of sugar content (≥ 59g), based on findings from our earlier analysis.
+
+We used the final Ridge regression model without retraining, and calculated RMSE separately for both groups. The model's error was 0.6522 for high-sugar recipes and 0.6264 for low-sugar recipes, leading to an observed RMSE gap of 0.0258.
+
+To test if this difference was significant, we ran a permutation test: we shuffled sugar group labels 1,000 times and recalculated the RMSE difference for each. Our null hypothesis assumed the model is fair (no true difference in errors), and the alternative stated the model is unfair (worse on high-sugar recipes).
+
+Interpretation of Fairness Test Plot
+The red dashed line shows our observed RMSE gap. Only 0.2% of permuted test statistics were more extreme, giving a p-value of 0.002. This result strongly suggests that the model performs worse on high-sugar recipes — even though those often receive perfect user ratings.
+
+We conclude that our model exhibits unfair behavior, systematically underperforming on indulgent recipes. This reveals a disconnect between user preferences and model predictions, pointing to a fairness concern in recipe rating predictions.
