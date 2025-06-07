@@ -1,6 +1,7 @@
 ---
 title: "Final Model"
 permalink: /final/
+layout: default
 ---
 
 ## Final Model
