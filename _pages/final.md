@@ -32,5 +32,4 @@ permalink: /final/
 
 - RandomForestRegressor cals_binned
 - By binning calories into 4 quantile-based categories: “low”, “medium”, “high”, “very_high” answers: Is a low-calorie recipe rated higher than a very high-calorie one?
-- Lecture 13–14: skewed numerical features should be binned or quantile-transformed
 
