@@ -1,6 +1,7 @@
 ---
 title: "Data Cleaning and Exploratory Data Analysis"
 permalink: /eda/
+layout: default
 ---
 
 ## Data Cleaning and Exploratory Data Analysis
