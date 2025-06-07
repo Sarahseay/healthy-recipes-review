@@ -125,7 +125,6 @@ We grouped recipes into:
 
 We used the difference in group means as the test statistic:  
 **mean_sugar_LessThan5.0 – mean_sugar_Perfect5.0**
-
 - **Observed difference**: –5.88 grams  
 - **α = 0.05**
 
@@ -141,7 +140,8 @@ We reject the null hypothesis. Rather than having less sugar, recipes with perfe
 
 ----
 
-Framing a Prediction Problem
+### Framing a Prediction Problem
+
 We framed our task as a regression problem, since we are predicting a numeric outcome — a recipe’s average user rating (avg_rating), which ranges between 1.0 and 5.0.
 
 Our response variable is avg_rating, which directly answers our research question: Do healthier recipes get better reviews? Earlier analysis showed a link between sugar and rating, suggesting that recipe features do influence user reviews.
@@ -152,7 +152,7 @@ To evaluate our models, we used Root Mean Squared Error (RMSE), which penalizes 
 
 ---
 
-## Baseline Model
+### Baseline Model
 
 We created a baseline model to predict a recipe’s average rating using only numeric features like calories, sugar, fat, sodium, protein, prep time, number of steps, and number of ingredients — all of which are quantitative and didn’t require encoding.
 
@@ -177,6 +177,7 @@ The Ridge model achieved RMSE = 0.6343, improving on both the baseline model (0.
 ----
 
 ### Fairness Analysis
+
 We evaluated whether our final model was fair by comparing its performance on two groups: high-sugar recipes (is_high_sugar = 1) and low-sugar ones (is_high_sugar = 0). This feature flagged recipes in the top 25% of sugar content (≥ 59g), based on findings from our earlier analysis.
 
 We used the final Ridge regression model without retraining, and calculated RMSE separately for both groups. The model's error was 0.6522 for high-sugar recipes and 0.6264 for low-sugar recipes, leading to an observed RMSE gap of 0.0258.
