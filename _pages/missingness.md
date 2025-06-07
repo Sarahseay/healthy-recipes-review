@@ -17,7 +17,7 @@ layout: default
 (Found a Column that the Missingness of rating depends on)
 
 <iframe
-  src="/healthy-recipes-review/assets/nsteps-missingness.html"
+  src="/healthy-recipes-review/assets/minutes-missingness.html"
   width="800"
   height="500"
   frameborder="0"
