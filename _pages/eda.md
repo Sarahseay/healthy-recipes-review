@@ -19,7 +19,7 @@ layout: default
 
 ## Data Cleaning Explaination:
 * We found one recipe that listed 0 minutes, which isn’t realistic, so we removed it.
-* Dropped irrelevant columns like contributor_id (who submitted the recipe) and submitted (timestamp), time, user_id, recipe_id, and rating since they don’t affect healthiness or ratings.
+* Dropped irrelevant columns like contributor_id (who submitted the recipe) and submitted (timestamp), time, user_id, recipe_id, since they don’t affect healthiness or ratings.
 * We also found a small number of extreme outliers, some recipes claimed to take over a year to prepare, likely due to errors. So to keep the data reasonable, we kept only recipes that take between 1 minute and 36 hours to make.
 * The contributor_id column identifies who submitted each recipe, we’re not studying user behavior or who made the recipe, so we can remove this column.
 * he submitted column shows when each recipe was added to the website,we’re not analyzing trends over time, this column wasn’t needed so we can remove it.
