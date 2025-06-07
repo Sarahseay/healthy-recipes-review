@@ -1,6 +1,7 @@
 ---
 title: "Fairness Analysis"
 permalink: /fairness/
+layout: default
 ---
 
 ## Fairness Analysis
