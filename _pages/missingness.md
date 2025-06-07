@@ -1,6 +1,7 @@
 ---
 title: "Assessment of Missingness"
 permalink: /missingness/
+layout: default
 ---
 
 ## Assessment of Missingness
