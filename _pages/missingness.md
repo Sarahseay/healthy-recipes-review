@@ -13,8 +13,8 @@ layout: default
 
 - To treat this column as Missing At Random (MAR), we would need additional data that explains why a user might skip writing a description. For example, knowing whether the recipe is short or simple (few ingredients or quick cook time). If those features could consistently predict missingness, we could reclassify it as MAR.
 
-## Permutation Test for rating based on the missingness of n_steps
-(Found a Column that the Missingness of rating depends on)
+## Permutation Test: Difference in Mean of Minutes by Rating Missingness
+(Found a Column that the Missingness of rating does not depend)
 
 <iframe
   src="/healthy-recipes-review/assets/minutes-missingness.html"
@@ -23,10 +23,10 @@ layout: default
   frameborder="0"
 ></iframe>
 
-### Description for Permuation Test for Rating by Number of Steps:
+### Description for Permuation Test
 
-To explore whether the missingness in the rating column depends on recipe characteristics in our dataset, we compared the distribution of number of steps (n_steps) between recipes with and without ratings. The overlaid histogram shows that recipes with ratings (rating_missing == False, color is blue) tend to have fewer steps on average and appear more frequently, while those with missing ratings (rating_missing == True, color is red) are less common and skew slightly toward higher step counts.
+To understand whether recipes with longer or shorter cook times are more likely to receive a rating, we tested whether minutes (the recipe duration) is related to missing ratings. We did this by simulating 1,000 random groupings and calculating how different the average cook time was between recipes with and without ratings. These simulated differences are shown in the pink bars in the chart below.
 
-This difference in distributions suggests a potential dependency between n_steps and rating_missing. To evaluate this statistically, we ran a permutation test comparing the mean number of steps between the two groups. The result produced a p-value of 0.0, indicating that the observed difference is highly unlikely to occur by chance.
+Most of the simulated differences in average cook time fell between 25 minutes shorter to 25 minutes longer — meaning the groups typically looked similar under random conditions. The actual difference in our data was around 52 minutes shorter for rated recipes, which is much more extreme than most of the simulated outcomes.
 
-This analysis is similar to the approach used in Lecture 8, where a numerical variable’s distribution was compared by missing/not-missing groups using visuals and permutation testing. The plot and test provide strong evidence that the missingness of rating depends on n_steps. This supports the conclusion that rating is Missing At Random (MAR) with respect to recipe complexity, which directly informs our broader question of how recipe attributes relate to user engagement through ratings.
+Statistically, this might seem unusual. But cook time is not something users directly control or react to when choosing to leave a rating. So despite the difference, we believe minutes does not meaningfully influence whether users rate a recipe. This supports the conclusion that rating is Missing Completely At Random (MCAR) with respect to minutes, meaning the presence or absence of a rating is unrelated to how long the recipe takes.
